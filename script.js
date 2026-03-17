@@ -319,17 +319,29 @@ function handleAddressSubmit(e) {
     alert(`兑换成功！您已成功兑换 ${reward.name}，我们将尽快为您发货`);
 }
 
-// 关闭模态框
-function closeModal() {
-    // 关闭所有模态框
-    document.getElementById('address-modal').style.display = 'none';
-    document.getElementById('history-modal').style.display = 'none';
-    document.getElementById('history-detail-modal').style.display = 'none';
-    
-    // 重置地址表单
-    document.getElementById('address-form').reset();
-    document.getElementById('city').disabled = true;
-    document.getElementById('district').disabled = true;
+// 关闭指定模态框
+function closeModal(modalId) {
+    // 如果没有指定模态框，关闭所有模态框
+    if (!modalId) {
+        document.getElementById('address-modal').style.display = 'none';
+        document.getElementById('history-modal').style.display = 'none';
+        document.getElementById('history-detail-modal').style.display = 'none';
+        
+        // 重置地址表单
+        document.getElementById('address-form').reset();
+        document.getElementById('city').disabled = true;
+        document.getElementById('district').disabled = true;
+    } else {
+        // 只关闭指定的模态框
+        document.getElementById(modalId).style.display = 'none';
+        
+        // 如果关闭的是地址模态框，重置表单
+        if (modalId === 'address-modal') {
+            document.getElementById('address-form').reset();
+            document.getElementById('city').disabled = true;
+            document.getElementById('district').disabled = true;
+        }
+    }
 }
 
 // 点击模态框外部关闭
@@ -338,7 +350,7 @@ window.onclick = function(event) {
     modals.forEach(modalId => {
         const modal = document.getElementById(modalId);
         if (event.target == modal) {
-            closeModal();
+            closeModal(modalId);
         }
     });
 }
@@ -358,7 +370,13 @@ function init() {
     
     // 为所有关闭按钮添加事件监听器
     document.querySelectorAll('.close').forEach(btn => {
-        btn.addEventListener('click', closeModal);
+        btn.addEventListener('click', function() {
+            // 找到当前关闭按钮所在的模态框
+            const modal = this.closest('.modal');
+            if (modal) {
+                closeModal(modal.id);
+            }
+        });
     });
 }
 
