@@ -91,6 +91,14 @@ function renderUserPoints() {
     document.getElementById('user-points').textContent = userPoints;
 }
 
+// 显示图片查看模态框
+function showImageModal(imageUrl) {
+    const modal = document.getElementById('image-modal');
+    const modalImage = document.getElementById('modal-image');
+    modalImage.src = imageUrl;
+    modal.style.display = 'block';
+}
+
 // 渲染奖励项目
 function renderRewards() {
     const rewardsGrid = document.getElementById('rewards-grid');
@@ -101,7 +109,7 @@ function renderRewards() {
         rewardItem.className = 'reward-item';
         
         rewardItem.innerHTML = `
-            <img src="${reward.image}" alt="${reward.name}">
+            <img src="${reward.image}" alt="${reward.name}" data-image="${reward.image}">
             <h3>${reward.name}</h3>
             <p>${reward.description}</p>
             <div class="reward-points">${reward.points} 积分</div>
@@ -116,6 +124,14 @@ function renderRewards() {
     // 添加兑换按钮事件监听
     document.querySelectorAll('.exchange-btn').forEach(btn => {
         btn.addEventListener('click', handleExchange);
+    });
+    
+    // 添加图片点击事件监听
+    document.querySelectorAll('.reward-item img').forEach(img => {
+        img.addEventListener('click', function() {
+            const imageUrl = this.dataset.image;
+            showImageModal(imageUrl);
+        });
     });
 }
 
@@ -326,6 +342,7 @@ function closeModal(modalId) {
         document.getElementById('address-modal').style.display = 'none';
         document.getElementById('history-modal').style.display = 'none';
         document.getElementById('history-detail-modal').style.display = 'none';
+        document.getElementById('image-modal').style.display = 'none';
         
         // 重置地址表单
         document.getElementById('address-form').reset();
@@ -346,7 +363,7 @@ function closeModal(modalId) {
 
 // 点击模态框外部关闭
 window.onclick = function(event) {
-    const modals = ['address-modal', 'history-modal', 'history-detail-modal'];
+    const modals = ['address-modal', 'history-modal', 'history-detail-modal', 'image-modal'];
     modals.forEach(modalId => {
         const modal = document.getElementById(modalId);
         if (event.target == modal) {
