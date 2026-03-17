@@ -63,7 +63,7 @@ const rewards = [
 ];
 
 // 初始化数据
-let userPoints = 1000;
+let userPoints = 10000;
 let exchangeHistory = [];
 
 // 从本地存储加载数据
