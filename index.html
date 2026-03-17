@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>积分兑换系统</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>积分兑换系统</h1>
+        
+        <div class="user-info">
+            <h2>用户信息</h2>
+            <p>当前积分: <span id="user-points">1000</span></p>
+            <div class="history-toggle">
+                <span id="history-btn">兑换历史</span>
+            </div>
+        </div>
+        
+        <div class="rewards-section">
+            <h2>可兑换奖励</h2>
+            <div class="rewards-grid" id="rewards-grid">
+                <!-- 奖励项目将通过 JavaScript 动态生成 -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- 收货地址模态框 -->
+    <div id="address-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>填写收货地址</h2>
+            <form id="address-form">
+                <input type="hidden" id="reward-id">
+                <div class="form-group">
+                    <label for="name">姓名:</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">电话:</label>
+                    <input type="tel" id="phone" required maxlength="11" pattern="\d{11}">
+                    <small>请输入11位手机号码</small>
+                </div>
+                <div class="form-group">
+                    <label>地址:</label>
+                    <div class="address-selector">
+                        <select id="province" required>
+                            <option value="">请选择省份</option>
+                        </select>
+                        <select id="city" required disabled>
+                            <option value="">请选择城市</option>
+                        </select>
+                        <select id="district" required disabled>
+                            <option value="">请选择区县</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="detail-address">详细地址:</label>
+                    <textarea id="detail-address" required placeholder="请输入街道、门牌号等详细地址"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">确认兑换</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- 兑换历史模态框 -->
+    <div id="history-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>兑换历史</h2>
+            <ul id="history-list">
+                <!-- 兑换历史将通过 JavaScript 动态生成 -->
+            </ul>
+        </div>
+    </div>
+    
+    <!-- 兑换详情模态框 -->
+    <div id="history-detail-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>兑换详情</h2>
+            <div id="history-detail-content">
+                <!-- 兑换详情将通过 JavaScript 动态生成 -->
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
