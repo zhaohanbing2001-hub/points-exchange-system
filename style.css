@@ -21,7 +21,7 @@ body {
 .header {
     text-align: center;
     margin-bottom: 0;
-    padding: 100px 40px;
+    padding: 80px 40px;
     background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
     border-radius: 0;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
@@ -30,7 +30,7 @@ body {
     margin-bottom: 0;
     z-index: 1;
     border: none;
-    height: 50vh;
+    height: 33.333vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -96,6 +96,10 @@ h2 {
     border: 1px solid rgba(255, 215, 0, 0.3);
     position: relative;
     z-index: 2;
+    margin-top: -50px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .user-info-header {
